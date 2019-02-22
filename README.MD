@@ -1,7 +1,7 @@
 OPT Image Importer
 ==================
 
-![This script was last tested in Nuix 7.6](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-7.6-green.svg)
+![This script was last tested in Nuix 7.8](https://img.shields.io/badge/Script%20Tested%20in%20Nuix-7.8-green.svg)
 
 View the GitHub project [here](https://github.com/Nuix/OPT-Image-Importer) or download the latest release [here](https://github.com/Nuix/OPT-Image-Importer/releases).
 
@@ -24,6 +24,46 @@ Begin by downloading the latest release of this code.  Extract the contents of t
 
 - `%appdata%\Nuix\Scripts` - User level script directory
 - `%programdata%\Nuix\Scripts` - System level script directory
+
+## Settings
+
+| Setting | Description |
+|---------|-------------|
+| **Opticon File** | Path to an OPT load file which will be used to import images. |
+| **Temp Directory** | The script creates PDF files from images to load them into Nuix.  This specifies a directory in which the script will create these PDFs. |
+| **Delete Temporary PDFs** | Whether intermediate PDFs should be deleted from the temp directory once they have been imported into the Nuix case. |
+| **Match Production Set DOCID** | When checked, the script will match identifier in OPT file to items in the case using the search `document-id:OPT_ID_HERE`. |
+| **Match Metadata Property** | When checked, the script will match identifier in OPT file to values present in metadata property **DOCID** or **BEGINBATES** present on items. This setting is useful when you have ingested a load file previously and wish to now associate images. |
+
+## Volume Paths
+
+An OPT file often refers to images using a relative path.  Each entry in an OPT can have an associated volume.  In turn there can be multiple volumes in a given OPT, each which may have its images in a different base directory.
+
+```
+FAKEEMAIL-00000001,VOLUME001,IMAGE\00\000\001\FAKEEMAIL-00000001_0001.tif,Y,,,1
+FAKEEMAIL-00000002,VOLUME001,IMAGE\00\000\002\FAKEEMAIL-00000002_0001.tif,Y,,,1
+FAKEEMAIL-00000003,VOLUME001,IMAGE\00\000\003\FAKEEMAIL-00000003_0001.tif,Y,,,1
+FAKEFILE-00000004,VOLUME002,IMAGE\00\000\001\FAKEFILE-00000001_0001.tif,Y,,,1
+FAKEFILE-00000005,VOLUME002,IMAGE\00\000\002\FAKEFILE-00000001_0001.tif,Y,,,1
+```
+
+The **Volume Paths** tab allows you to associate the proper base directory with each volume:
+
+![image](https://user-images.githubusercontent.com/11775738/53260708-02626b00-3687-11e9-85f8-bc24aa84e2fc.png)
+
+It is also common to have an OPT file without any volumes:
+
+```
+FAKEEMAIL-00000001,,IMAGE\00\000\001\FAKEEMAIL-00000001_0001.tif,Y,,,1
+FAKEEMAIL-00000002,,IMAGE\00\000\002\FAKEEMAIL-00000002_0001.tif,Y,,,1
+FAKEEMAIL-00000003,,IMAGE\00\000\003\FAKEEMAIL-00000003_0001.tif,Y,,,1
+FAKEEMAIL-00000004,,IMAGE\00\000\004\FAKEEMAIL-00000004_0001.tif,Y,,,1
+FAKEEMAIL-00000005,,IMAGE\00\000\005\FAKEEMAIL-00000005_0001.tif,Y,,,1
+```
+
+When this is the case, you still need to add an entry to the **Volume Paths** table to specify a base directory, but you may leave the `Volume` value blank.
+
+![image](https://user-images.githubusercontent.com/11775738/53260852-6e44d380-3687-11e9-8d30-ae6b8ada20be.png)
 
 ## Cloning this Repository
 
