@@ -29,7 +29,7 @@ main_tab.setText("temp_directory","C:\\Temp")
 main_tab.appendCheckBox("delete_temp_pdfs","Delete Temporary PDFs",true)
 
 main_tab.appendRadioButton("match_docid","Match Production Set DOCID","match_grp",true)
-main_tab.appendRadioButton("match_item_property","Match Metadata DOCID Property","match_grp",false)
+main_tab.appendRadioButton("match_item_property","Match Metadata Property","match_grp",false)
 main_tab.appendComboBox("item_id_property","Item ID Property",["BEGINBATES","DOCID"])
 main_tab.enabledOnlyWhenChecked("item_id_property","match_item_property")
 
@@ -37,6 +37,7 @@ main_tab.enabledOnlyWhenChecked("item_id_property","match_item_property")
 # image root paths which will be used to take OPT entry relative paths belonging to a given volume and build
 # the absolute path used to locate any given image on disk.
 volumes_tab = dialog.addTab("volumes_tab","Volume Paths")
+volumes_tab.appendHeader("Note: You can have an entry with a blank value for volume, which will match OPT records without a volume.")
 volumes_tab.appendDynamicTable("volume_paths","Volume Paths",["Volume","Path"],[]) do |record,col,is_write,value|
 	if is_write
 		case col
