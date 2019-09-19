@@ -44,8 +44,8 @@ An OPT file often refers to images using a relative path.  Each entry in an OPT 
 FAKEEMAIL-00000001,VOLUME001,IMAGE\00\000\001\FAKEEMAIL-00000001_0001.tif,Y,,,1
 FAKEEMAIL-00000002,VOLUME001,IMAGE\00\000\002\FAKEEMAIL-00000002_0001.tif,Y,,,1
 FAKEEMAIL-00000003,VOLUME001,IMAGE\00\000\003\FAKEEMAIL-00000003_0001.tif,Y,,,1
-FAKEFILE-00000004,VOLUME002,IMAGE\00\000\001\FAKEFILE-00000001_0001.tif,Y,,,1
-FAKEFILE-00000005,VOLUME002,IMAGE\00\000\002\FAKEFILE-00000001_0001.tif,Y,,,1
+FAKEFILE-00000001,VOLUME002,IMAGE\00\000\001\FAKEFILE-00000001_0001.tif,Y,,,1
+FAKEFILE-00000002,VOLUME002,IMAGE\00\000\002\FAKEFILE-00000002_0001.tif,Y,,,1
 ```
 
 The **Volume Paths** tab allows you to associate the proper base directory with each volume:
@@ -77,7 +77,7 @@ Once you have a copy of Nx.jar, make sure to include it in the same directory as
 # License
 
 ```
-Copyright 2018 Nuix
+Copyright 2019 Nuix
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
