@@ -34,6 +34,7 @@ Begin by downloading the latest release of this code.  Extract the contents of t
 | **Delete Temporary PDFs** | Whether intermediate PDFs should be deleted from the temp directory once they have been imported into the Nuix case. |
 | **Match Production Set DOCID** | When checked, the script will match identifier in OPT file to items in the case using the search `document-id:OPT_ID_HERE`. |
 | **Match Metadata Property** | When checked, the script will match identifier in OPT file to values present in metadata property **DOCID** or **BEGINBATES** present on items. This setting is useful when you have ingested a load file previously and wish to now associate images. |
+| **Match GUID** | When checked, the script will match the identifier in the OPT file to item's GUIDs.  This setting is useful when you know the GUID that images should be associated to and have crafted an OPT which demonstrates this association. |
 
 ## Volume Paths
 

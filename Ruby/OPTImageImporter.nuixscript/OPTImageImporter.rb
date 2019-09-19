@@ -31,6 +31,7 @@ main_tab.appendCheckBox("delete_temp_pdfs","Delete Temporary PDFs",true)
 main_tab.appendRadioButton("match_docid","Match Production Set DOCID","match_grp",true)
 main_tab.appendRadioButton("match_item_property","Match Metadata Property","match_grp",false)
 main_tab.appendComboBox("item_id_property","Item ID Property",["BEGINBATES","DOCID"])
+main_tab.appendRadioButton("match_guid","Match GUID","match_grp",false)
 main_tab.enabledOnlyWhenChecked("item_id_property","match_item_property")
 
 # Define table control allowing use to define volumes which may be present in an OPT and their associated
@@ -108,6 +109,7 @@ if dialog.getDialogResult == true
 	match_docid = values["match_docid"]
 	match_item_property = values["match_item_property"]
 	item_id_property = values["item_id_property"]
+	match_guid = values["match_guid"]
 
 	ProgressDialog.forBlock do |pd|
 		pd.setTitle("Image to PDF Importer")
@@ -186,6 +188,17 @@ if dialog.getDialogResult == true
 					pd.logMessage("Unable to find any matches for DOCID '#{first_id}', PDF not imported!")
 					not_imported_count += 1
 				end
+			elsif match_guid
+				items = $current_case.search("guid:\"#{first_id}\"")
+				items.each do |item|
+					pdf_importer.importItem(item,temp_pdf_file)
+					import_count += 1
+				end
+
+				if import_count < 1
+					pd.logMessage("Unable to find any matches for GUID '#{first_id}', PDF not imported!")
+					not_imported_count += 1
+				end
 			end
 
 			if delete_temp_pdfs
@@ -195,7 +208,13 @@ if dialog.getDialogResult == true
 		end
 
 		if not_imported_count > 0
-			pd.logMessage("#{not_imported_count} document IDs could not be located in case, please review log messages.")
+			case_id_type = "DOCID"
+			if match_docid
+				case_id_type = item_id_property
+			elsif match_guid
+				case_id_type = "GUID"
+			end
+			pd.logMessage("#{not_imported_count} OPT IDs could not be matched to any #{case_id_type} found in the case, please review log messages.")
 		end
 
 		if pd.abortWasRequested
